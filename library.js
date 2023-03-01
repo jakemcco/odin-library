@@ -11,8 +11,29 @@
 const libraryGrid = document.getElementById('library-grid');
 const addBookForm = document.getElementById('add-book-form');
 
+addBookForm.onsubmit = userAddBook
 
+function userAddBook (e) {
+    e.preventDefault()
+    const newBook = createBookFromUserInput()
+    addBookToLibrary(newBook)
+    updateLibraryGrid()
+    addBookForm.reset()
+}
 
+function createBookFromUserInput () {
+    const title = document.getElementById('add-book-title').value
+    const author = document.getElementById('add-book-author').value
+    const pageCount = document.getElementById('add-book-pagecount').value
+    const isReadStatus = document.getElementById('add-book-is-read-status').value
+
+    return new Book(title, author, pageCount)
+}
+
+function removeBook (e) {
+    removeBookFromLibraryByTitle (e.target.value)
+    updateLibraryGrid()
+}
 
 function clearLibraryGrid() {
     libraryGrid.innerHTML = ''
@@ -46,10 +67,10 @@ function createBookCard(book) {
                     classList: 'book-author',
                     textContent: `${book.author}`
                     })
-    const pagecount = Object.assign(document.createElement('p'),
+    const pageCount = Object.assign(document.createElement('p'),
                     {
                     classList: 'book-pagecount',
-                    textContent: `${book.pagecount}`
+                    textContent: `${book.pageCount}`
                     })
     const cardButtons = Object.assign(document.createElement('div'),
                     {
@@ -64,11 +85,12 @@ function createBookCard(book) {
                     {
                     classList: 'btn btn-remove-book',
                     onclick: removeBook,
-                    textContent: 'Remove'
+                    textContent: 'Remove',
+                    value: book.title
                     })
 
     //append works similarly to appendChild but accepts multiple arguments
-    bookInfo.append(title, author, pagecount)
+    bookInfo.append(title, author, pageCount)
     cardButtons.append(bookReadStatusBtn, removeBookBtn)
     bookCard.append(bookInfo, cardButtons)
     libraryGrid.append(bookCard)
@@ -78,10 +100,10 @@ function createBookCard(book) {
 // Internals
 let myLibrary = [];
 
-function Book(title = 'Unknown  Title', author = 'Anonymous', pagecount = 999) {
+function Book(title = 'Unknown  Title', author = 'Anonymous', pageCount = 999) {
     this.title = title
     this.author = author
-    this.pagecount = pagecount
+    this.pageCount = pageCount
 }
 
 function addBookToLibrary (book) {
@@ -96,19 +118,16 @@ function removeBookFromLibraryByIndex (bookIndex) {
     myLibrary = myLibrary.filter((libBook) => myLibrary.indexOf(libBook) !== bookIndex)
 }
 
-function createBook (title, author, pagecount) {
+function createBook (title, author, pageCount) {
     // const newBook = new Book(name, author, pagecount);
     // return newBook;
-    return new Book(title, author, pagecount); // Has the same output
+    return new Book(title, author, pageCount); // Has the same output
 }
 
 function toggleReadStatus () {
 
 }
 
-function removeBook () {
-
-}
 // TEST STUFF
 clearLibraryGrid();
 const myBook = createBook('Lord of the Rings', 'J.R.R. Tolkien', '456');
