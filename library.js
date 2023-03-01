@@ -3,14 +3,16 @@
 // User inputs
 
 // inputHandler
-
 // createNewItemCard
 // addItemCard
 // removeItemCard
-
 // updateDisplay
 
 const libraryGrid = document.getElementById('library-grid');
+const addBookForm = document.getElementById('add-book-form');
+
+
+
 
 function clearLibraryGrid() {
     libraryGrid.innerHTML = ''
@@ -55,12 +57,12 @@ function createBookCard(book) {
                     })
     const bookReadStatusBtn = Object.assign(document.createElement('button'),
                     {
-                    classList: 'btn-read-status',
+                    classList: 'btn btn-read-status',
                     onclick: toggleReadStatus
                     })
     const removeBookBtn = Object.assign(document.createElement('button'),
                     {
-                    classList: 'btn-remove-book',
+                    classList: 'btn btn-remove-book',
                     onclick: removeBook,
                     textContent: 'Remove'
                     })
