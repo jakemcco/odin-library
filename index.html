@@ -9,45 +9,50 @@
     <script src="library.js" defer></script>
 </head>
 <body>
-    <div id="add-book-form-container">
-        <form id="add-book-form" name="add-book-form">
-            <legend>Add a New Book</legend>
-            <label for = "add-book-title" hidden>Title</label>
-            <input
-                type = "text"
-                id = "add-book-title"
-                name = "title"
-                placeholder = "Title"
-                required
-                maxlength = "99"
-            />
-            <label for = "add-book-author" hidden>Author</label>
-            <input
-                type = "text"
-                id = "add-book-author"
-                name = "author"
-                placeholder = "Author"
-                required
-                maxlength = "99"
-            />
-            <label for = "add-book-pagecount" hidden>Number of Pages</label>
-            <input
-                type = "number"
-                id = "add-book-pagecount"
-                name = pagecount
-                placeholder = "Pages"
-                required
-                min = 0
-                max = "9999"
-            />
-            <label for = "add-book-is-read-status">Have you read this book?</label>
-            <input
-                type = "checkbox"
-                id = "add-book-is-read-status"
-                name = "is-read-status"
-            />
-            <button class="btn btn-add-book" type="submit">Add Book</button>
-        </form>
+    <div id="sidebar">
+        <div id="add-book-form-container">
+            <form id="add-book-form" name="add-book-form">
+                <legend><h2>Add a New Book</h2></legend>
+                <label for = "add-book-title" hidden>Title</label>
+                <input
+                    type = "text"
+                    id = "add-book-title"
+                    name = "title"
+                    placeholder = "Title"
+                    required
+                    maxlength = "99"
+                />
+                <label for = "add-book-author" hidden>Author</label>
+                <input
+                    type = "text"
+                    id = "add-book-author"
+                    name = "author"
+                    placeholder = "Author"
+                    required
+                    maxlength = "99"
+                />
+                <label for = "add-book-pagecount" hidden>Number of Pages</label>
+                <input
+                    type = "number"
+                    inputmode = "numeric"
+                    id = "add-book-pagecount"
+                    name = pagecount
+                    placeholder = "# of Pages"
+                    required
+                    min = 0
+                    max = "9999"
+                />
+                <div class="is-read">
+                    <label for = "add-book-is-read-status">Have you read this book?</label>
+                    <input
+                        type = "checkbox"
+                        id = "add-book-is-read-status"
+                        name = "is-read-status"
+                    />
+                </div>
+                <button class="btn btn-add-book" type="submit">Add Book</button>
+            </form>
+        </div>
     </div>
     <div id="library-grid">
 

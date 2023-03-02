@@ -62,6 +62,10 @@ function createBookCard(book) {
                     classList: 'book-title',
                     textContent: `${book.title}`
                     })
+    const cardDividerH = Object.assign(document.createElement('div'),
+                    {
+                    classList: 'card-divider-h'
+                    })
     const author = Object.assign(document.createElement('p'),
                     {
                     classList: 'book-author',
@@ -70,7 +74,7 @@ function createBookCard(book) {
     const pageCount = Object.assign(document.createElement('p'),
                     {
                     classList: 'book-pagecount',
-                    textContent: `${book.pageCount}`
+                    textContent: `${book.pageCount} pages`
                     })
     const cardButtons = Object.assign(document.createElement('div'),
                     {
@@ -90,7 +94,7 @@ function createBookCard(book) {
                     })
 
     //append works similarly to appendChild but accepts multiple arguments
-    bookInfo.append(title, author, pageCount)
+    bookInfo.append(title, cardDividerH, author, pageCount)
     cardButtons.append(bookReadStatusBtn, removeBookBtn)
     bookCard.append(bookInfo, cardButtons)
     libraryGrid.append(bookCard)
