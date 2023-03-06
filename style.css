@@ -1,8 +1,9 @@
 :root{
     --dark-text: rgb(65, 69, 81);
-    --light-text: rgb(130, 132, 144);
+    --light-text: rgb(124, 126, 136);
     --light-background: rgb(246 247 251);
-    --dark-background:  #222329;
+    --dark-background:  #2f323d;
+    --border-radius: 8px;
 }
 
 *,
@@ -83,8 +84,12 @@ body {
 }
 
 .book-title {
-   flex:0;
    align-self: center;
+   justify-self: center;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+
    font-size: 2rem;
 }
 
