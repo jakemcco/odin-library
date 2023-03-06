@@ -29,7 +29,7 @@ body {
 #sidebar {
    grid-column-start: 1;
    background: var(--dark-background);
-   color: #a4a6b3;
+   color: #cfd2e0;
    padding-top: 0.35rem;
    user-select: none;
    position: relative;
@@ -49,8 +49,18 @@ body {
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
-   align-items: stretch;
+   align-items: center;
    gap: 10px;
+}
+
+.is-read {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 20px;
+}
+
+#add-book-is-read-status {
 }
 
 /* MAIN */
@@ -108,6 +118,7 @@ body {
    display: flex;
    justify-content: flex-end;
    align-items: flex-end;
+   margin-top: 10px;
 }
 
 .form-divider-h {
@@ -116,3 +127,51 @@ body {
    width: 100%;
  }
 
+ button[type="submit"] {
+   align-self: stretch;
+   padding: .8rem 1.3rem;
+   font-size: 1.3rem;
+   background-color: rgb(32, 72, 107);
+   border: none;
+   border-radius: 10px;
+   color: white;
+   letter-spacing: -1px;
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.253);
+
+}
+
+.btn-remove-book {
+   padding: .8rem 1.3rem;
+   font-size: 1.3rem;
+   background-color: rgb(67, 88, 107);
+   border: none;
+   border-radius: 10px;
+   color: white;
+   letter-spacing: -1px;
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.253);
+
+}
+
+input[type='text'], input[type='number'] {
+   width: 200px;
+   padding: 5px;
+   margin: 0;
+   border: 1px solid rgb(112, 112, 112);
+   border-radius: 5px;
+   font-size: 0.9rem;
+}
+
+input[type='checkbox'] {
+   width: 20px;
+   height: 20px;
+   margin: 0;
+   border: 1px solid rgb(112, 112, 112);
+   border-radius: 5px;
+   font-size: 0.9rem;
+}
+
+/* Interaction */
+button[type='submit']:hover {
+   background-color: rgb(49, 105, 155);
+   font-size: 1.35rem;
+ }
