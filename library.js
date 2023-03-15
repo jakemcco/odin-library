@@ -1,13 +1,3 @@
-// Externals
-
-// User inputs
-
-// inputHandler
-// createNewItemCard
-// addItemCard
-// removeItemCard
-// updateDisplay
-
 const libraryGrid = document.getElementById('library-grid');
 const addBookForm = document.getElementById('add-book-form');
 
@@ -16,7 +6,7 @@ addBookForm.onsubmit = userAddBook
 function userAddBook (e) {
     e.preventDefault()
     const newBook = createBookFromUserInput()
-    addBookToLibrary(newBook)
+    newLib.addBook(newBook);
     updateLibraryGrid()
     addBookForm.reset()
 }
@@ -27,11 +17,11 @@ function createBookFromUserInput () {
     const pageCount = document.getElementById('add-book-pagecount').value
     const isReadStatus = document.getElementById('add-book-is-read-status').value
 
-    return new Book(title, author, pageCount)
+    return createBook(title, author, pageCount);
 }
 
 function removeBook (e) {
-    removeBookFromLibraryByTitle (e.target.value)
+    newLib.removeBookByTitle (e.target.value);
     updateLibraryGrid()
 }
 
@@ -42,7 +32,7 @@ function clearLibraryGrid() {
 //Naive approach to simply clear and re-create library each time
 function updateLibraryGrid() {
     clearLibraryGrid();
-    for (let book of myLibrary) {
+    for (let book of newLib.collection) {
         createBookCard(book)
     }
 }
@@ -102,48 +92,62 @@ function createBookCard(book) {
 
 
 // Internals
-let myLibrary = [];
+class Library {
+    constructor(){
+        this.collection = [];
+    }
 
-function Book(title = 'Unknown  Title', author = 'Anonymous', pageCount = 999) {
-    this.title = title
-    this.author = author
-    this.pageCount = pageCount
-}
+    addBook (book) {
+        const bookClone = book.clone();
+        this.collection.push(bookClone);
+    }
 
-function addBookToLibrary (book) {
-    myLibrary.push(book);
-}
+    removeBookByIndex (index) {
+        this.collection = this.collection.filter((libBook) => this.collection.indexOf(libBook) !== index);
+    }
 
-function removeBookFromLibraryByTitle (bookTitle) {
-    myLibrary = myLibrary.filter((libBook) => libBook.title !== bookTitle);
-}
+    removeBookByTitle (bookTitle) {
+        this.collection = this.collection.filter((libBook) => libBook.title !== bookTitle);
+    }
 
-function removeBookFromLibraryByIndex (bookIndex) {
-    myLibrary = myLibrary.filter((libBook) => myLibrary.indexOf(libBook) !== bookIndex)
+};
+
+class Book {
+    constructor(title = 'Unknown Title', author = 'Anonymous', pageCount = 999){
+        this.title = title
+        this.author = author
+        this.pageCount = pageCount
+    }
+
+    clone () {
+        const clone = new Book();
+        clone.title = this.title;
+        clone.author = this.author;
+        clone.pageCount = this.pageCount;
+        return clone;
+    }    
 }
 
 function createBook (title, author, pageCount) {
-    // const newBook = new Book(name, author, pagecount);
-    // return newBook;
     return new Book(title, author, pageCount); // Has the same output
 }
 
 function toggleReadStatus () {
-
 }
 
-// TEST STUFF
-clearLibraryGrid();
-const myBook = createBook('Lord of the Rings', 'J.R.R. Tolkien', '456');
-let aBook = createBook('Cooking for Dummies', 'John Adams', '123');
-let bBook = createBook();
 
-addBookToLibrary(myBook);
-addBookToLibrary(aBook);
-addBookToLibrary(bBook);
+// TEST STUFF
+//Test timer for logging stuff
+
+const newLib = new Library;
+clearLibraryGrid();
+
+const myBook = createBook('Lord of the Rings', 'J.R.R. Tolkien', '456');
+const aBook = createBook('Cooking for Dummies', 'John Adams', '123');
+const bBook = createBook();
+
+newLib.addBook(myBook);
+newLib.addBook(aBook);
+newLib.addBook(bBook);
 
 updateLibraryGrid();
-
-//removeBookFromLibraryByIndex(0);
-
-console.log();
